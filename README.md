@@ -1,5 +1,17 @@
 Nonogram Solver
 ================
+# Rules
+Numbers mean the number of marked squares in the accosiated row/column.
+Every group of marked squres is seperated by at least one blank.
+
+For example, if the clue is '1 2 4' with line length 10,
+all possible patterns are:
+```
+■X■■X■■■■X
+■X■■XX■■■■
+■XX■■X■■■■
+X■X■■X■■■■
+```
 # Example
 
 Solve this problem:
