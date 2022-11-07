@@ -294,7 +294,9 @@ while True:
     print ("5, 10, 15, 20, 25: nxn Random Problem")
     print ("q: Quit\n")
 
-    sel = int(raw_input())
+    sel = input().strip()
+    if sel.isdigit():
+        sel = int(sel)
 
     os.system('clear')
 
@@ -304,7 +306,7 @@ while True:
         for i in range((len(file_list)-1)//4 + 1):
             print (' '.join(file_list[4*i:4*(i+1)]))
 
-        pnum = int(raw_input("Problem number: "))
+        pnum = int(input("Problem number: "))
         filename = 'problem' + str(pnum) + '.txt'
         Prob = Problem(filename)
         with open(filename, "r") as f:
@@ -337,7 +339,7 @@ while True:
                 print ("wrong input")
                 exit(-1)
 
-            pnum = raw_input("Input Problem Number or 'n' for next page... ")
+            pnum = input("Input Problem Number or 'n' for next page... ")
             if pnum == 'n':
                 pagenum += 1
                 continue
@@ -361,7 +363,7 @@ while True:
     os.system('clear')
     Prob.print_problem()
 
-    raw_input ("Enter to start... ")
+    input ("Enter to start... ")
 
     suc = Prob.solve(v=visual, t=interval)
     os.system('clear')
@@ -375,6 +377,6 @@ while True:
         Prob.print_problem()
         print("Fail to solve")
 
-    sel = raw_input("q: Quit\notherwise: Home\n")
+    sel = input("q: Quit\notherwise: Home\n")
     if sel == 'q':
         exit(0)

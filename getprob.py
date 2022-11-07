@@ -1,4 +1,4 @@
-from urllib import urlopen
+from urllib.request import urlopen
 import re
 import ast
 
@@ -20,7 +20,7 @@ def encode(v):
 
 def get_problem(pid):
     # puzzle_num = 11092
-    page = urlopen("http://nemonemologic.com/play_logic.php?quid="+str(pid)).read()
+    page = urlopen("http://nemonemologic.com/play_logic.php?quid="+str(pid)).read().decode()
 
     page = page.split('\n')
     data = None
@@ -37,9 +37,16 @@ def get_problem(pid):
     return vhints, hhints
 
 def get_prob_list(pagenum, size):
-    page = urlopen("http://nemonemologic.com/logic_board.php?page=" + str(pagenum) + "&size="+str(size)).read().split('\n')
+    page = urlopen("http://nemonemologic.com/logic_board.php?page=" + str(pagenum) + "&size="+str(size)).read().decode().split('\n')
     ret = {}
+    flag = False
     for line in page:
+        if "최신 로직" in line:
+            flag = True
+            continue
+        if not flag:
+            continue
+
         if 'quid' in line:
             plist = re.findall('quid=([0-9]+).*>(.*)<.*', line)
             for id, title in plist:
